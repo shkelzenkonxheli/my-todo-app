@@ -206,7 +206,7 @@ export default function TodoItem() {
             : "Great job, you're more than halfway there!"}
         </p>
       </div>
-      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-2xl mx-auto">
+      <div className="bg-white p-8 rounded-2xl md:max-w-full  shadow-xl w-full max-w-2xl mx-auto">
         <h1 className="text-3xl font-bold text-center mb-8 text-indigo-600">
           ✅ TO DO APP
         </h1>
