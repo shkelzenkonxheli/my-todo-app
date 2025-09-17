@@ -13,7 +13,22 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false },
 });
-
+async function createTableIfNotExists() {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS todos (
+        id SERIAL PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        priority VARCHAR(255) NOT NULL,
+        deadline DATE NOT NULL
+      );
+    `);
+    console.log("Table 'todos' verified/created.");
+  } catch (err) {
+    console.error("Error creating table:", err);
+  }
+}
+createTableIfNotExists();
 app.use(cors());
 app.use(express.json());
 
