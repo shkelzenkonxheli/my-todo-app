@@ -268,30 +268,29 @@ export default function TodoItem() {
         </div>
 
         {/* Task list */}
-        <ol className="space-y-4">
+        <ol className="space-y-3">
           {filteredTasks.map((task, index) => (
             <li
               key={index}
-              className="bg-gray-50 p-4 rounded-lg shadow-sm flex justify-between items-center"
+              className="bg-gray-50 p-3 sm:p-4 rounded-lg shadow flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-3 flex-wrap"
             >
-              <div className="flex items-center gap-3 flex-1">
+              <div className="flex items-center gap-2 flex-1 w-full flex-wrap">
                 <input
                   type="checkbox"
                   checked={task.completed}
                   onChange={() => toggleComplete(index)}
                   className="w-5 h-5 accent-indigo-600"
                 />
-
                 {editIndex === index ? (
                   <input
                     type="text"
                     value={editTask}
                     onChange={(e) => setEditTask(e.target.value)}
-                    className="flex-1 px-2 py-1 border border-gray-300 rounded"
+                    className="flex-1 min-w-0 px-2 py-1 border border-gray-300 rounded"
                   />
                 ) : (
                   <span
-                    className={`text-lg ${
+                    className={`text-sm sm:text-base ${
                       task.completed
                         ? "line-through text-gray-400"
                         : "text-gray-800"
@@ -301,19 +300,17 @@ export default function TodoItem() {
                   </span>
                 )}
 
-                {/* Priority Badge */}
-                <div className="flex items-center gap-2">
+                {/* Priority & Deadline */}
+                <div className="flex items-center gap-2 flex-wrap mt-1 sm:mt-0">
                   <span
-                    className={`px-2 py-1 text-xs rounded-full font-medium ${
+                    className={`px-2 py-0.5 text-xs rounded-full font-medium ${
                       priorityColors[task.priority]
                     }`}
                   >
                     {task.priority}
                   </span>
-
-                  {/* Deadline */}
                   {task.deadline && (
-                    <span className="text-sm text-blue-600 flex items-center gap-1">
+                    <span className="text-xs sm:text-sm text-blue-600 flex items-center gap-1">
                       <FaCalendarAlt />
                       {new Date(task.deadline).toLocaleDateString()}
                     </span>
@@ -322,14 +319,13 @@ export default function TodoItem() {
               </div>
 
               {/* Actions */}
-              <div className="flex gap-3 ml-3">
+              <div className="flex gap-2 mt-2 sm:mt-0 flex-wrap">
                 <button
                   onClick={() => handleDelete(task.id)}
                   className="text-red-500 hover:text-red-700"
                 >
                   <FaTrash />
                 </button>
-
                 {!task.completed && editIndex !== index && (
                   <button
                     onClick={() => handleEdit(index)}
@@ -338,7 +334,6 @@ export default function TodoItem() {
                     <FaEdit />
                   </button>
                 )}
-
                 {editIndex === index && (
                   <button
                     onClick={handleSave}
