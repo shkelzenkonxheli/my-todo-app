@@ -189,7 +189,7 @@ export default function TodoItem() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center p-6">
+    <div className="min-h-screen md:max-w-full flex flex-col justify-center p-6">
       <div className="mb-8 text-center">
         <h1 className="text-6xl font-bold text-gray-600">
           {completedTask}/{tasks.length} tasks
